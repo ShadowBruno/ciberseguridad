@@ -81,6 +81,21 @@ void print_forward(Node *head) {
     printf("\n");
 }
 
+void print_backward(Node *head) {
+    if (!head) {
+        printf("Backward: (empty)\n");
+        return;
+    }
+    Node *cur = head;
+    while (cur->despues) cur = cur->despues;
+    printf("Backward: ");
+    while (cur) {
+        printf("%d", cur->data);
+        if (cur->antes) printf(" -> ");
+        cur = cur->antes;
+    }
+    printf("\n");
+}
 
 void free_list(Node **head) {
     Node *cur = *head;
@@ -101,7 +116,8 @@ int main(void) {
     push_back(&head, 20);
     push_front(&head, 5);
     push_back(&head, 30);
-    print_forward(head);    
+    print_forward(head);  
+    print_backward(head);  
 
     Node *n10 = find(head, 10);
     insert_after(n10, 15);
